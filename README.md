@@ -1,50 +1,53 @@
-# Análisis de Síndrome de Burnout en el entorno laboral
 
-Proyecto de análisis de datos (curso de Data Analysis, CoderHouse) sobre el
-síndrome de burnout en un entorno corporativo: modelado de datos en esquema
-estrella, definición de caso de negocio con stakeholders reales, dashboard
-interactivo en Power BI, y análisis de KPIs por departamento, género, edad y
-evolución temporal (2019–2025).
+## Hallazgos principales
 
-## Documentación principal
+- **100 empleados** analizados a lo largo de **7 años** (2019–2025), con un
+  nivel de burnout promedio de **65.3** (escala 30–95) y una tasa de rotación
+  del **53%** en el período.
+- **RR.HH. y Operaciones** son los departamentos con mayor burnout promedio
+  (66.4 y 66.0), y también los de mayor rotación (13 y 15 salidas). **TI** y
+  **Ventas** tienen el burnout más bajo (64.4) pero Ventas igual concentra 15
+  rotaciones — sugiere que ahí la salida de gente responde a otros factores,
+  no solo al burnout.
+- El grupo etario **20-29 años** tiene el burnout más alto (67.0), y baja de
+  forma sostenida con la edad hasta 55.7 en 60-69 — contraintuitivo si se
+  espera que la carga aumente con la seniority; puede reflejar menor
+  tolerancia al estrés o menor experiencia en manejarlo en los primeros años
+  de carrera.
+- El género **femenino** reporta un burnout promedio más alto que el
+  masculino (66.5 vs 63.8).
+- La rotación **se duplicó entre 2019 y 2025** (de 8 a 12 salidas/año) pese a
+  que el burnout promedio bajó levemente en el último año — señal de que la
+  rotación no depende solo del nivel de burnout medido, sino probablemente de
+  factores externos (mercado laboral, compensación) que valdría la pena
+  cruzar en una siguiente iteración.
 
-- 📄 **[Informe_Burnout_Mayrim_Consolidado.pdf](Informe_Burnout_Mayrim_Consolidado.pdf)**
-  — informe final completo: caso de negocio, modelo de datos, proceso de
-  armado en Power BI/Power Query (con ejemplos de medidas DAX),
-  conclusiones, recomendaciones, limitaciones y líneas futuras.
-- 📊 **[Proyecto_PowerBI_Mayrim.pbix](Proyecto_PowerBI_Mayrim.pbix)** —
-  dashboard interactivo (abrir con Power BI Desktop).
-- 📋 **[caso-de-negocio.pdf](caso-de-negocio.pdf)** — material complementario
-  con el avance intermedio del curso: destinatarios, niveles de uso,
-  glosario y diagrama entidad-relación.
+![Evolución 2019-2025](evolucion_2019_2025.png)
+![Por departamento](por_departamento.png)
+![Por género](por_genero.png)
+![Por grupo etario](por_edad.png)
 
-## Caso de negocio
+## Estructura del proyecto
+├── Informe_Burnout_Mayrim_Consolidado.pdf # informe final completo (documentación principal)
+├── Proyecto_PowerBI_Mayrim.pbix # dashboard interactivo de Power BI
+├── Burnout_Mayrim_ENTREGA_FINAL.xlsx # modelo de datos + tablas de análisis
+├── caso-de-negocio.pdf # caso de negocio, destinatarios, ER, glosario (complementario)
+├── evolucion_2019_2025.png # gráficos de los hallazgos
+├── por_departamento.png
+├── por_genero.png
+├── por_edad.png
+├── make_charts.py # script que genera los gráficos
+└── README.md
+## Nota sobre el dataset base
 
-Se trabajó con información histórica sobre síndrome de burnout recolectada en
-entornos laborales entre 2015 y 2025, distinguiendo departamentos, empleados,
-características sociodemográficas, niveles de burnout, días de licencia y
-antigüedad.
+El dataset original (sin segmentar) usado como punto de partida del curso
+fue provisto por la profesora del curso; este proyecto usa el modelo de
+datos y el análisis propio desarrollado a partir de esa base — la
+segmentación en esquema estrella, las tablas dimensión, el dashboard de
+Power BI, los KPIs y el caso de negocio son trabajo propio.
 
-**Destinatarios:** directores y gerentes de RR.HH., psicólogos laborales,
-áreas de prevención de riesgos laborales, analistas de datos/BI,
-departamentos de compliance y salud ocupacional, y directivos interesados en
-retención de talento.
+## Stack
 
-**Preguntas de negocio que responde el análisis:**
-- ¿Cuál es el departamento con mayor nivel promedio de burnout?
-- ¿Qué grupo etario y qué género muestran mayor prevalencia?
-- ¿Cómo evolucionó el burnout y la rotación entre 2019 y 2025?
-- ¿Qué relación existe entre nivel de burnout y antigüedad/rotación?
-
-## Modelo de datos
-
-Diseñado en **esquema estrella**: una tabla de hechos `Burnout_Laboral`
-(nivel de burnout y días de licencia por empleado y período) conectada por
-relaciones uno-a-muchos con las tablas dimensión `Empleado` y `Departamento`,
-cada una con su propia primary key. Este modelo es la base del dashboard de
-Power BI.
-
-El archivo [`Burnout_Mayrim_ENTREGA_FINAL.xlsx`](Burnout_Mayrim_ENTREGA_FINAL.xlsx)
-contiene (GitHub no puede previsualizar Excel — hay que descargarlo o abrirlo
-con "View raw" — así que acá va el detalle de qué hay en cada pestaña):
--
+Power BI (Power Query, DAX) · Modelado de datos (esquema estrella) ·
+Excel/Google Sheets · Python (pandas, Matplotlib/Seaborn) para los gráficos
+de este README
